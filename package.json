@@ -1,0 +1,46 @@
+{
+  "name": "grunt-css-relativisor",
+  "description": "Turns local absolute file references to relative urls.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/fracmak/grunt-css-relativisor",
+  "author": {
+    "name": "Jay Merrifield"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fracmak/grunt-css-relativisor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fracmak/grunt-css-relativisor/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/fracmak/grunt-css-relativisor/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "chalk": "~0.4.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin",
+    "css-relativisor"
+  ],
+  "files": [
+    "tasks",
+    "LICENSE"
+  ]
+}
