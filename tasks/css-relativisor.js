@@ -18,7 +18,8 @@ module.exports = function (grunt) {
         var urlRegex = new RegExp("(url\\(['\" ]*)" + options.root, 'g');
         this.filesSrc.forEach(function (filepath) {
             var source = grunt.file.read(filepath),
-                numDirectoriesToRoot = filepath.substring(options.cwd.length + options.root.length).split('/').length;
+                localPath = filepath.substring(filepath.indexOf(options.root, options.cwd.length) + options.root.length),
+                numDirectoriesToRoot = localPath.split('/').length;
 
             var relativeSource = source.replace(urlRegex, "$1" + (new Array(numDirectoriesToRoot)).join('../'));
             grunt.file.write(filepath, relativeSource);
