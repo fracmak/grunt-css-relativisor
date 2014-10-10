@@ -11,13 +11,16 @@ var chalk = require('chalk');
 module.exports = function (grunt) {
     grunt.task.registerMultiTask('css-relativisor', 'Make CSS Urls Relative', function () {
         var options = this.options({
-            filter: '/'
+            root: '/',
+            cwd: ''
         });
 
-        var urlRegex = new RegExp("(url\\(['\" ]*)" + options.filter, 'g');
+        var urlRegex = new RegExp("(url\\(['\" ]*)" + options.root, 'g');
         this.filesSrc.forEach(function (filepath) {
             var source = grunt.file.read(filepath),
-                relativeSource = source.replace(urlRegex, "$1" + filepath);
+                numDirectoriesToRoot = filepath.substring(options.cwd.length + options.root.length).split('/').length;
+
+            var relativeSource = source.replace(urlRegex, "$1" + (new Array(numDirectoriesToRoot)).join('../'));
             grunt.file.write(filepath, relativeSource);
             grunt.log.writeln('File ' + chalk.cyan(filepath) + ' relativised');
         });
