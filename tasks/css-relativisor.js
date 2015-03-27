@@ -14,8 +14,11 @@ module.exports = function (grunt) {
             root: '/',
             cwd: ''
         });
-
-        var urlRegex = new RegExp("(url\\(['\" ]*)" + options.root, 'g');
+        var urlFilter = options.root;
+        if (urlFilter === '/') {
+            urlFilter = '/[^/]';
+        }
+        var urlRegex = new RegExp("(url\\(['\" ]*)" + urlFilter, 'g');
         this.filesSrc.forEach(function (filepath) {
             var source = grunt.file.read(filepath),
                 localPath = filepath.substring(filepath.indexOf(options.root, options.cwd.length) + options.root.length),
