@@ -1,0 +1,95 @@
+.a {
+    background: url('/test/img.png');
+}
+
+.b {
+    background: url(/test/img.png);
+}
+
+.c {
+    background: url("/test/img.png");
+}
+
+.d {
+    background: url( '/test/img.png');
+}
+
+.aa {
+    background: url('//test.com/img.png');
+}
+
+.bb {
+    background: url(//test.com/img.png);
+}
+
+.cc {
+    background: url("//test.com/img.png");
+}
+
+.dd {
+    background: url( '//test.com/img.png');
+}
+
+.aaa {
+    background: url('../test/img.png');
+}
+
+.bbb {
+    background: url(../test/img.png);
+}
+
+.ccc {
+    background: url("../test/img.png");
+}
+
+.ddd {
+    background: url( '../test/img.png');
+}
+
+.aaaa {
+    background: url('http://test.com/img.png');
+}
+
+.bbbb {
+    background: url(http://test.com/img.png);
+}
+
+.cccc {
+    background: url("http://test.com/img.png");
+}
+
+.dddd {
+    background: url( 'http://test.com/img.png');
+}
+
+.aaaaa {
+    background: url('https://test.com/img.png');
+}
+
+.bbbbb {
+    background: url(https://test.com/img.png);
+}
+
+.ccccc {
+    background: url("https://test.com/img.png");
+}
+
+.ddddd {
+    background: url( 'https://test.com/img.png');
+}
+
+.aaaaaa {
+    background: url('img.png');
+}
+
+.bbbbbb {
+    background: url(img.png);
+}
+
+.cccccc {
+    background: url("img.png");
+}
+
+.dddddd {
+    background: url( 'img.png');
+}
