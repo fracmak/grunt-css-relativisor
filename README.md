@@ -1,6 +1,9 @@
 # grunt-css-relativisor
 
-This plugin takes any /absolute/ local urls and turns them into relative urls. This is useful if you version your static files and want a generic way to reference relative images correctly.
+** Note, version 1.0 had a major change to the options. Please review them when upgrading
+
+This plugin takes any /absolute/ local urls and turns them into relative urls. It will also rebase any relative urls based on the destination file.
+This is useful if you version your static files and want to maintain references to your images/fonts.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -24,19 +27,26 @@ _Run this task with the `grunt css-relativisor` command._
 
 ### Options
 
-#### root
+#### filter
 
 Type: `String`  
 Default: `/`
 
-This is a way to filter only what urls get relativised. By default '/' is all there is, but you can change that to only relativise specific urls
+This is a way to filter only what urls get relativised. By default only absolute paths are filtered
 
-#### cwd
+#### rebase
+
+Type: `Boolean`
+Default: true
+
+This will rebase any relative url to maintain the link to the file in the file system.
+
+#### root
 
 Type: `String`  
-Default: ``
+Default: process.cwd()
 
-If you save your css files in a sub directory relative to grunt, use this option to make certain we relativise the path to the correct number of directories
+This is where the / path is mapped from the browser on the file system. By default the root is the process.cwd()
 
 ### Usage Examples
 
