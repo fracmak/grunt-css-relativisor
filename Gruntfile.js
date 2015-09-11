@@ -30,6 +30,14 @@ module.exports = function(grunt) {
                     'tmp/sample_root.css': ['tests/fixtures/sample.css']
                 }
             },
+            filter: {
+                options: {
+                    filter: '/test/'
+                },
+                files: {
+                    'tmp/sample_filter.css': ['tests/fixtures/sample.css']
+                }
+            },
             norebase: {
                 options: {
                     rebase: false

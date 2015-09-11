@@ -9,28 +9,25 @@
 var chalk = require('chalk'),
     path = require('path');
 
-function relativizeString(fileSource, rootDir, sourceDir, destinationDir, urlRegex, rebase) {
-    return fileSource.replace(urlRegex, function(match, p1, p2, offset, string) {
-        var endIndex = offset + match.length;
-        if (match.indexOf('//') === -1 &&
-            string.indexOf('http://', endIndex) !== endIndex &&
-            string.indexOf('https://', endIndex) !== endIndex) {
+function relativizeString(fileSource, rootDir, sourceDir, destinationDir, urlRegex, options) {
+    return fileSource.replace(urlRegex, function(match, p1, p2, p3, offset, string) {
+        if (match.indexOf('//') === -1) {
             // skip urls, including schemaless urls
-            var relativeAdjustment = '';
             if (p2[0] === '/') {
-                // absolute urls
-                relativeAdjustment = path.relative(destinationDir, path.join(rootDir, p2));
-            } else if (rebase) {
+                var filterIndex = offset + match.length - 1;
+                if (!options.filter || string.indexOf(options.filter, filterIndex) === filterIndex) {
+                    return p1 + path.relative(destinationDir, path.join(rootDir, p2)) + '/';
+                }
+            } else if (options.rebase) {
+                var relativeAdjustment = path.relative(destinationDir, path.resolve(sourceDir, p2));
                 // relative urls, rebase
-                relativeAdjustment = path.relative(destinationDir, path.resolve(sourceDir, p2));
-            } else {
-                // relative urls, no rebase
-                return match;
+                if (p2[0] === '.') {
+                    return p1 + relativeAdjustment + '/';
+                } else {
+                    return p1 + relativeAdjustment;
+                }
             }
-            if (relativeAdjustment) {
-                relativeAdjustment = relativeAdjustment + '/';
-            }
-            return p1 + relativeAdjustment;
+            return match;
         } else {
             return match;
         }
@@ -44,7 +41,7 @@ module.exports = function(grunt) {
             rebase: true,
             root: process.cwd()
         });
-        var urlRegex = new RegExp('(url\\([\'" ]*)(' + options.filter + '|[../]*)[../]*', 'g'),
+        var urlRegex = new RegExp('(url\\([\'" ]*)(//|/|http://|https://|(\\.\\./)+|[a-z]+)', 'g'),
             rootDir = path.resolve(options.root);
         this.files.forEach(function(file) {
             var destinationDir = path.dirname(path.resolve(file.dest));
@@ -60,7 +57,7 @@ module.exports = function(grunt) {
                 var sourceDir = path.dirname(filepath);
                 // Read and return the file's source.
                 grunt.verbose.writeln('Processing', chalk.green(filepath), 'to', chalk.green(destinationDir));
-                return relativizeString(grunt.file.read(filepath), rootDir, sourceDir, destinationDir, urlRegex, options.rebase);
+                return relativizeString(grunt.file.read(filepath), rootDir, sourceDir, destinationDir, urlRegex, options);
             }).join('\n');
 
             grunt.file.write(file.dest, contents);
