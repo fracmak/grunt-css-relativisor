@@ -19,6 +19,14 @@ exports.concat = {
         test.equal(actual, expected, 'root patterns should be remapped correctly while ignoring schemaless domains');
         test.done();
     },
+    filter: function(test) {
+        test.expect(1);
+
+        var actual = fs.readFileSync('tmp/sample_filter.css', 'utf8');
+        var expected = fs.readFileSync('tests/expected/sample_filter.css', 'utf8');
+        test.equal(actual, expected, 'root patterns should be remapped correctly while ignoring schemaless domains');
+        test.done();
+    },
     norebase: function(test) {
         test.expect(1);
 

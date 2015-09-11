@@ -14,6 +14,22 @@
     background: url( '../test/img.png');
 }
 
+.at {
+    background: url('../tests/img.png');
+}
+
+.bt {
+    background: url(../tests/img.png);
+}
+
+.ct {
+    background: url("../tests/img.png");
+}
+
+.dt {
+    background: url( '../tests/img.png');
+}
+
 .aa {
     background: url('//test.com/img.png');
 }

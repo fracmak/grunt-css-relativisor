@@ -1,17 +1,17 @@
 .a {
-    background: url('/test/img.png');
+    background: url('../test/img.png');
 }
 
 .b {
-    background: url(/test/img.png);
+    background: url(../test/img.png);
 }
 
 .c {
-    background: url("/test/img.png");
+    background: url("../test/img.png");
 }
 
 .d {
-    background: url( '/test/img.png');
+    background: url( '../test/img.png');
 }
 
 .at {
@@ -47,19 +47,19 @@
 }
 
 .aaa {
-    background: url('../test/img.png');
+    background: url('../tests/test/img.png');
 }
 
 .bbb {
-    background: url(../test/img.png);
+    background: url(../tests/test/img.png);
 }
 
 .ccc {
-    background: url("../test/img.png");
+    background: url("../tests/test/img.png");
 }
 
 .ddd {
-    background: url( '../test/img.png');
+    background: url( '../tests/test/img.png');
 }
 
 .aaaa {
@@ -95,17 +95,17 @@
 }
 
 .aaaaaa {
-    background: url('img.png');
+    background: url('../tests/fixtures/img.png');
 }
 
 .bbbbbb {
-    background: url(img.png);
+    background: url(../tests/fixtures/img.png);
 }
 
 .cccccc {
-    background: url("img.png");
+    background: url("../tests/fixtures/img.png");
 }
 
 .dddddd {
-    background: url( 'img.png');
+    background: url( '../tests/fixtures/img.png');
 }
